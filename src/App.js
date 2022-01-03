@@ -1,24 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {Div} from './styled/grid';
+import {Input} from './components/input'
+import {Cards} from './components/display';
+import { Detail } from './components/details';
+import {useState } from "react";
 function App() {
+  const [state, setstate]=useState(false);
+  const [item, itemState]=useState([]);
+  const data=(d)=>{
+    setstate(true);
+    itemState(d[0]);
+    console.log(d)
+    console.log(item)
+    
+}
   return (
+    <>
+    <Div>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Input/>
+     
     </div>
+    <Cards elData={data}/>
+    </Div>
+    {state? <Detail data={item}/>:<div>Click on the Recipe to see Details</div>};  
+    </>
   );
 }
 
